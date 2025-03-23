@@ -1,0 +1,44 @@
+{
+    "name": "@dliv/try-catch",
+    "version": "0.6.0",
+    "description": "A TypeScript utility for better error handling.",
+    "type": "module",
+    "main": "dist/index.cjs",
+    "module": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "files": [
+        "dist"
+    ],
+    "scripts": {
+        "build": "tsup",
+        "check": "tsc --noEmit",
+        "test": "c8 node --import tsx --test test/**/*.ts",
+        "format": "prettier --write \"{lib,test}/**/*.ts\"",
+        "lint": "prettier --check \"{lib,test}/**/*.ts\"",
+        "prepublishOnly": "npm run format && npm run check && npm run build && npm t"
+    },
+    "keywords": [
+        "trycatch",
+        "try-catch",
+        "try",
+        "error",
+        "catch",
+        "async",
+        "promise"
+    ],
+    "author": "David Livingston <git@dliv.org>",
+    "license": "WTFPL",
+    "devDependencies": {
+        "c8": "^10.1.3",
+        "prettier": "^3.5.3",
+        "tsup": "^7.2.0",
+        "tsx": "^4.7.0"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/dliv/try-catch.git"
+    },
+    "bugs": {
+        "url": "https://github.com/dliv/try-catch/issues"
+    }
+}
