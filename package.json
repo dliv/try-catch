@@ -1,6 +1,6 @@
 {
     "name": "@dliv/try-catch",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "A TypeScript utility for better error handling.",
     "type": "module",
     "main": "dist/index.cjs",

@@ -99,6 +99,31 @@ test('ok sync thunk is ok', () => {
     });
 });
 
+test('ok sync thunk is ok with falsy values / void', () => {
+    {
+        const falsy = [false, 0, '', null, undefined];
+        for (const it of falsy) {
+            const actual = tryCatchSync(() => it);
+            check({
+                actual,
+                expectedData: it,
+                expectedError: null,
+            });
+        }
+    }
+    // same as `undefined` for runtime but the type is technically different (`void`)
+    {
+        const actual = tryCatchSync(() => {
+            return;
+        });
+        check({
+            actual,
+            expectedData: undefined,
+            expectedError: null,
+        });
+    }
+});
+
 test('sync value is okay', async () => {
     const actual = await tryCatch(42);
     check({

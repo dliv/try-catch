@@ -24,11 +24,13 @@ export type ResultPair<T> = OkResultPair<T> | ErrorResultPair;
 /** makes an array object hybrid based on an initial { data, error } object */
 export const asResultPair = <T = unknown>(result: ErrorResult | OkResult<T>): ResultPair<T> => {
     // preconditions, browser does not have a real assert
-    const nullCount = (result.error ? 1 : 0) + (result.data ? 1 : 0);
     /* c8 ignore start */
-    if (nullCount !== 1) {
+    const undefinedCount =
+        (result.error === undefined ? 1 : 0) + (result.data === undefined ? 1 : 0);
+    // cannot test `nullCount === 1` because `tryCatchSync` can return void/undefined - maybe we should detect with a Symbol
+    if (undefinedCount > 1) {
         throw new TypeError(
-            'try-catch library internal error - asResultPair() must have one of data xor error',
+            'try-catch library internal error - asResultPair() cannot set both data and error fields',
         );
     }
     /* c8 ignore stop */
